@@ -1,51 +1,23 @@
-/// --- Set up a system ---
+import Field from './models/hockey/Field';
+import Handle from './models/hockey/Handle';
+import Puck from './models/hockey/Puck';
+import ScoreScreen from './models/hockey/ScoreScreen';
 
-class RotatorSystem {
-  // this group will contain every entity that has a Transform component
-  group = engine.getComponentGroup(Transform)
+const field = new Field(new GLTFShape('models/hockey/field.glb'), new Transform({ position: new Vector3(3, 0.3, 3) }));
 
-  update(dt: number) {
-    // iterate over the entities of the group
-    for (let entity of this.group.entities) {
-      // get the Transform component of the entity
-      const transform = entity.getComponent(Transform)
+const handleBlue = new Handle(
+    new GLTFShape('models/hockey/handle_blue.glb'),
+    new Transform({ position: new Vector3(3, 0.3, 3) })
+);
 
-      // mutate the rotation
-      transform.rotate(Vector3.Up(), dt * 10)
-    }
-  }
-}
+const handlePink = new Handle(
+    new GLTFShape('models/hockey/handle_pink.glb'),
+    new Transform({ position: new Vector3(3, 0.3, 3) })
+);
 
-// Add a new instance of the system to the engine
-engine.addSystem(new RotatorSystem())
+const puck = new Puck(new GLTFShape('models/hockey/puck.glb'), new Transform({ position: new Vector3(3, 0.3, 3) }));
 
-/// --- Spawner function ---
-
-function spawnCube(x: number, y: number, z: number) {
-  // create the entity
-  const cube = new Entity()
-
-  // add a transform to the entity
-  cube.addComponent(new Transform({ position: new Vector3(x, y, z) }))
-
-  // add a shape to the entity
-  cube.addComponent(new BoxShape())
-
-  // add the entity to the engine
-  engine.addEntity(cube)
-
-  return cube
-}
-
-/// --- Spawn a cube ---
-
-const cube = spawnCube(8, 1, 8)
-
-cube.addComponent(
-  new OnClick(() => {
-    cube.getComponent(Transform).scale.z *= 1.1
-    cube.getComponent(Transform).scale.x *= 0.9
-
-    spawnCube(Math.random() * 8 + 1, Math.random() * 8, Math.random() * 8 + 1)
-  })
-)
+const scoreScreen = new ScoreScreen(
+    new GLTFShape('models/hockey/screen.glb'),
+    new Transform({ position: new Vector3(3, 0.7, 3) })
+);
