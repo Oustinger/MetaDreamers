@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "maff-metaverse-hackathon-metadreamers",
   "version": "1.0.0",
-  "description": "My new Decentraland project",
+  "description": "Metadreamers team project for Maff Metaverse hackathon",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",
