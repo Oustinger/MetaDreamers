@@ -1,7 +1,10 @@
+import Scene from './Scene';
 import Field from './models/hockey/Field';
 import Handle from './models/hockey/Handle';
 import Puck from './models/hockey/Puck';
 import ScoreScreen from './models/hockey/ScoreScreen';
+
+const scene = new Scene(new GLTFShape('models/final.glb'), new Transform({ position: new Vector3(22, 0, 22) }));
 
 const field = new Field(new GLTFShape('models/hockey/field.glb'), new Transform({ position: new Vector3(3, 0.3, 3) }));
 
